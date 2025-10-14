@@ -9,13 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('photo_tag', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+   public function up(): void
+{
+    Schema::create('photo_tag', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('photo_id')->constrained()->onDelete('cascade');
+    $table->foreignId('tag_id')->constrained()->onDelete('cascade');
+    $table->timestamps();
+});
+}
 
     /**
      * Reverse the migrations.
